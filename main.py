@@ -3,18 +3,23 @@ import random
 import disk_thread
 
 from FIFO import FIFO
+from CSCAN import CSCAN
 
 
 def main():
     # First in first out
-    disk = FIFO(speed=2088)
-    timer(disk, 10000)
+    disk = FIFO()
+    timer(disk, 1000, "FIFO Basic")
+
+    # C-SCAN
+    disk = CSCAN()
+    timer(disk, 1000, "C-SCAN Basic")
 
 
-def timer(disk, number_of_elements):
+def timer(disk, number_of_elements, name):
     start_time = time.time()
     new_disk = disk_processing(disk, number_of_elements)
-    print(f'FIFO basic: {time.time() - start_time} seconds')
+    print(f'{name}: {time.time() - start_time} seconds')
     # print(*new_disk.disk)
 
 

@@ -1,6 +1,3 @@
-import time
-
-
 class FIFO:
     def __init__(self, size=200, queue=list(), speed=1, head=100):
         self.disk = [0] * size
