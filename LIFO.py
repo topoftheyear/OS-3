@@ -1,4 +1,4 @@
-class FIFO:
+class LIFO:
     def __init__(self, size=200, queue=list(), speed=1, head=100):
         self.disk = [0] * size
         self.queue = queue
@@ -31,12 +31,13 @@ class FIFO:
             # If there are items in the queue, spin the head to add it
             if len(self.queue) > 0:
                 if self.current is None:
-                    self.current = self.queue[0]
+                    self.current = self.queue[-1]
 
                 # If the head is currently at the correct destination, modify the disk
                 if self.head == self.current:
                     self.queue.pop(0)
                     self.disk[self.head] += 1
+                    self.current = None
                 # Else spin the head in the closest direction to get there
                 else:
                     if self.head < self.current:

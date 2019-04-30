@@ -3,6 +3,7 @@ import random
 import disk_thread
 
 from FIFO import FIFO
+from LIFO import LIFO
 from CSCAN import CSCAN
 
 
@@ -10,6 +11,10 @@ def main():
     # First in first out
     disk = FIFO()
     timer(disk, 1000, "FIFO Basic")
+
+    # Last in first out
+    disk = LIFO()
+    timer(disk, 1000, "LIFO Basic")
 
     # C-SCAN
     disk = CSCAN()
