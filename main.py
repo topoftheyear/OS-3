@@ -5,6 +5,7 @@ import disk_thread
 from FIFO import FIFO
 from LIFO import LIFO
 from CSCAN import CSCAN
+from SCAN import SCAN
 
 
 def main():
@@ -19,6 +20,10 @@ def main():
     # C-SCAN
     disk = CSCAN()
     timer(disk, 1000, "C-SCAN Basic")
+
+    #SCAN
+    disk = SCAN()
+    timer(disk, 1000, "SCAN Basic")
 
 
 def timer(disk, number_of_elements, name):
