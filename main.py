@@ -9,7 +9,7 @@ from LIFO import LIFO
 from CSCAN import CSCAN
 from SCAN import SCAN
 from SSTF import SSTF
-
+from FSCAN import FSCAN
 
 def main():
     # First in first out
@@ -32,6 +32,10 @@ def main():
     disk = CSCAN()
     timer(disk, 1000, "C-SCAN Basic")
 
+    # FSCAN
+    disk = FSCAN()
+    timer(disk, 1000, "F-SCAN Basic")
+
     # FIFO seek for table
     disk = FIFO()
     timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "FIFO Fixed Array")
@@ -51,6 +55,10 @@ def main():
     # CSCAN seek for table
     disk = CSCAN()
     timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "CSCAN Fixed Array")
+
+    # FSCAN seek for table
+    disk = FSCAN()
+    timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "FSCAN Fixed Array")
 
     # FIFO Small, Fast and Weighted
     disk = FIFO(

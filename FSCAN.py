@@ -10,6 +10,7 @@ class FSCAN:
         self.speed = speed
         self.head = head
         self.first_queue_done = False
+        self.sum_travel = 0
 
         if self.speed == 0:
             raise ValueError("Speed should be greater than 0, idiot")
@@ -66,6 +67,7 @@ class FSCAN:
                         distance += self.size()
 
                     self.head += min(self.speed, distance)
+                    self.sum_travel += min(self.speed, distance)
 
                 # Deal with the looping around
                 if self.head > len(self.disk):
@@ -103,6 +105,7 @@ class FSCAN:
                         distance += self.size()
 
                     self.head += min(self.speed, distance)
+                    self.sum_travel += min(self.speed, distance)
 
                 # Deal with the looping around
                 if self.head > len(self.disk):
@@ -122,4 +125,5 @@ class FSCAN:
                 self.start_second_queue()
             elif len(self.queue_two) <= 0 and self.first_queue_done:
                 self.override = True
+                print("total travel FSCAN: ", self.sum_travel)
                 return
