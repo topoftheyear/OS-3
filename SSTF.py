@@ -5,6 +5,7 @@ class SSTF:
         self.override = False
         self.speed = speed
         self.head = head
+        self.sum_travel = 0
 
         if self.speed == 0:
             raise ValueError("Speed should be greater than 0, idiot")
@@ -56,9 +57,11 @@ class SSTF:
                     if self.head < self.current:
                         distance = self.current - self.head
                         self.head += min(distance, self.speed)
+                        self.sum_travel += min(distance, self.speed)
                     else:
                         distance = self.head - self.current
                         self.head -= min(distance, self.speed)
+                        self.sum_travel += min(distance, self.speed)
         return
 
     # Stops the disk from running when the queue empties
@@ -66,4 +69,5 @@ class SSTF:
         while True:
             if len(self.queue) <= 0:
                 self.override = True
+                print("total travel SSTF: ", self.sum_travel)
                 return
