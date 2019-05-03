@@ -6,6 +6,7 @@ from FIFO import FIFO
 from LIFO import LIFO
 from CSCAN import CSCAN
 from SCAN import SCAN
+from SSTF import SSTF
 
 
 def main():
@@ -24,6 +25,10 @@ def main():
     #SCAN
     disk = SCAN()
     timer(disk, 1000, "SCAN Basic")
+
+    #SSTF
+    disk = SSTF()
+    timer(disk, 1000, "Shortest-Service-Time-First Basic")
 
 
 def timer(disk, number_of_elements, name):
