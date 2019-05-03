@@ -5,6 +5,7 @@ class SCAN:
         self.override = False
         self.speed = speed
         self.head = head
+        self.sum_travel = 0
 
         if self.speed == 0:
             raise ValueError("Speed should be greater than 0, idiot")
@@ -46,26 +47,24 @@ class SCAN:
                                 if closest > thing > self.head:
                                     closest = thing
                             if closest == 200:  # if not found, switch direction
-                                #print("not found, switching to negative")
                                 direction = -1
                             else:
                                 chosen = True
                                 distance = closest - self.head
                                 self.head += min(self.speed, distance)
-                                #print("move head to ", self.head)
+                                self.sum_travel += min(self.speed, distance)
                         elif direction < 0:  # negative direction
                             closest = -1
                             for thing in self.queue:
                                 if closest < thing < self.head:
                                     closest = thing
                             if closest == -1:
-                                #print("not found, switching to positive")
                                 direction = 1  # if not found, switch direction
                             else:
                                 chosen = True
                                 distance = self.head - closest
                                 self.head -= min(self.speed, distance)
-                                #print("move head to ", self.head)
+                                self.sum_travel += min(self.speed, distance)
         return
 
     # Stops the disk from running when the queue empties
@@ -73,4 +72,5 @@ class SCAN:
         while True:
             if len(self.queue) <= 0:
                 self.override = True
+                print("total travel SCAN: ", self.sum_travel)
                 return

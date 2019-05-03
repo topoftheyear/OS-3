@@ -40,9 +40,13 @@ def main():
     disk = LIFO()
     timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "LIFO Fixed Array")
 
-    # LIFO seek for table
+    # SSTF seek for table
     disk = SSTF()
     timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "SSTF Fixed Array")
+
+    # SCAN seek for table
+    disk = SCAN()
+    timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "SCAN Fixed Array")
 
     # FIFO Small, Fast and Weighted
     disk = FIFO(
