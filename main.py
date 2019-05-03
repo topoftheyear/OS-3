@@ -18,24 +18,26 @@ def main():
     disk = LIFO()
     timer(disk, 1000, "LIFO Basic")
 
-    # C-SCAN
-    disk = CSCAN()
-    timer(disk, 1000, "C-SCAN Basic")
+    # SSTF
+    disk = SSTF()
+    timer(disk, 1000, "Shortest-Service-Time-First Basic")
 
-    #SCAN
+    # SCAN
     disk = SCAN()
     timer(disk, 1000, "SCAN Basic")
 
-    #SSTF
-    disk = SSTF()
-    timer(disk, 1000, "Shortest-Service-Time-First Basic")
+    # C-SCAN
+    disk = CSCAN()
+    timer(disk, 1000, "C-SCAN Basic")
 
 
 def timer(disk, number_of_elements, name):
     start_time = time.time()
     new_disk = disk_processing(disk, number_of_elements)
-    print(f'{name}: {time.time() - start_time} seconds')
+    t = time.time() - start_time
+    print(f'{name}: {t} seconds')
     # print(*new_disk.disk)
+    return t
 
 
 def disk_processing(disk, number_of_elements):
