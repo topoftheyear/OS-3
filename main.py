@@ -7,6 +7,7 @@ from LIFO import LIFO
 from CSCAN import CSCAN
 from SCAN import SCAN
 from SSTF import SSTF
+from FSCAN import FSCAN
 
 
 def main():
@@ -29,6 +30,10 @@ def main():
     # C-SCAN
     disk = CSCAN()
     timer(disk, 1000, "C-SCAN Basic")
+
+    # FSCAN
+    disk = FSCAN()
+    timer(disk, 1000, "FSCAN Basic")
 
 
 def timer(disk, number_of_elements, name):
