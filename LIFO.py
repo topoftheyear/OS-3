@@ -5,6 +5,7 @@ class LIFO:
         self.override = False
         self.speed = speed
         self.head = head
+        self.sum_travel = 0
 
         if self.speed == 0:
             raise ValueError("Speed should be greater than 0, idiot")
@@ -35,7 +36,7 @@ class LIFO:
 
                 # If the head is currently at the correct destination, modify the disk
                 if self.head == self.current:
-                    self.queue.pop(0)
+                    self.queue.pop(-1)
                     self.disk[self.head] += 1
                     self.current = None
                 # Else spin the head in the closest direction to get there
@@ -44,14 +45,18 @@ class LIFO:
                         distance = self.current - self.head
                         if distance > int(len(self.disk) / 2):
                             self.head -= min(distance, self.speed)
+                            self.sum_travel += min(distance, self.speed)
                         else:
                             self.head += min(distance, self.speed)
+                            self.sum_travel += min(distance, self.speed)
                     else:
                         distance = self.head - self.current
                         if distance > int(len(self.disk) / 2):
                             self.head += min(distance, self.speed)
+                            self.sum_travel += min(distance, self.speed)
                         else:
                             self.head -= min(distance, self.speed)
+                            self.sum_travel += min(distance, self.speed)
 
                     # Deal with the looping around
                     if self.head > len(self.disk):
@@ -66,4 +71,5 @@ class LIFO:
         while True:
             if len(self.queue) <= 0:
                 self.override = True
+                print("total travel LIFO: ", self.sum_travel)
                 return
