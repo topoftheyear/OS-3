@@ -70,5 +70,5 @@ class FIFO:
         while True:
             if len(self.queue) <= 0:
                 self.override = True
-                print(self.sum_travel)
+                print("total travel FIFO: ", self.sum_travel)
                 return
