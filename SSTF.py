@@ -30,9 +30,14 @@ class SSTF:
 
             # If there are items in the queue, spin the head to add it
             if len(self.queue) > 0:
+                # If current head is in the queue, remove it from the queue
+                if self.head in self.queue:
+                    self.queue.remove(self.head)
+                    self.current = None
                 if self.current is None:
                     distance = 201
                     destination = -1
+                    self.queue = sorted(self.queue)
                     for item in self.queue:
                         if self.head < item:
                             if item - self.head < distance:
@@ -43,13 +48,9 @@ class SSTF:
                                 distance = self.head - item
                                 destination = item
                         elif self.head == item:
-                            self.head = item
+                            destination = item
                             break
                     self.current = destination
-                # If current head is in the queue, remove it from the queue
-                if self.head in self.queue:
-                    self.queue.remove(self.head)
-                    self.current = None
                 # Else spin the head in the closest direction to get there
                 else:
                     if self.head < self.current:
