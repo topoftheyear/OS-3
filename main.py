@@ -48,6 +48,10 @@ def main():
     disk = SCAN()
     timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "SCAN Fixed Array")
 
+    # CSCAN seek for table
+    disk = CSCAN()
+    timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "CSCAN Fixed Array")
+
     # FIFO Small, Fast and Weighted
     disk = FIFO(
         speed=4,

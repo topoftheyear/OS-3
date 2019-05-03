@@ -5,6 +5,7 @@ class CSCAN:
         self.override = False
         self.speed = speed
         self.head = head
+        self.sum_travel = 0
 
         if self.speed == 0:
             raise ValueError("Speed should be greater than 0, idiot")
@@ -51,6 +52,7 @@ class CSCAN:
                         distance += self.size()
 
                     self.head += min(self.speed, distance)
+                    self.sum_travel += min(self.speed, distance)
 
                 # Deal with the looping around
                 if self.head > len(self.disk):
@@ -65,4 +67,5 @@ class CSCAN:
         while True:
             if len(self.queue) <= 0:
                 self.override = True
+                print("total travel CSCAN: ", self.sum_travel)
                 return
