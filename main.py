@@ -32,6 +32,10 @@ def main():
     disk = CSCAN()
     timer(disk, 1000, "C-SCAN Basic")
 
+    # FIFO seek for table
+    disk = FIFO()
+    timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "FIFO Fixed Array")
+
     # FIFO Small, Fast and Weighted
     disk = FIFO(
         speed=4,
@@ -91,6 +95,27 @@ def gen_weights(disk, weight=0):
         weights[x] = weights[x] / total
 
     return weights
+
+
+def timer_fixed_array(disk, array_of_elements, name):
+    start_time = time.time()
+    new_disk = disk_processing_fixed_array(disk, array_of_elements)
+    t = time.time() - start_time
+    print(f'{name}: {t} seconds')
+    # print(*new_disk.disk)
+    return t
+
+
+def disk_processing_fixed_array(disk, array_of_elements):
+    thread = disk_thread.Thread(disk.start)
+    thread.start()
+
+    for x in array_of_elements:
+        disk.append(x)
+
+    disk.stop()
+
+    return disk
 
 
 if __name__ == '__main__':
