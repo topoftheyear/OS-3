@@ -8,6 +8,7 @@ class NStepSCAN:
         self.override = False
         self.speed = speed
         self.head = head
+        self.sum_travel = 0
 
         if self.speed == 0:
             raise ValueError("Speed should be greater than 0, idiot")
@@ -58,6 +59,7 @@ class NStepSCAN:
                                 chosen = True
                                 distance = closest - self.head
                                 self.head += min(self.speed, distance)
+                                self.sum_travel += min(self.speed, distance)
                                 #print("move head to ", self.head)
                         elif direction < 0:  # negative direction
                             closest = -1
@@ -71,6 +73,7 @@ class NStepSCAN:
                                 chosen = True
                                 distance = self.head - closest
                                 self.head -= min(self.speed, distance)
+                                self.sum_travel += min(self.speed, distance)
                                 #print("move head to ", self.head)
             elif len(self.queue_array[self.current_queue]) <= 0:
                 self.stop()
@@ -83,4 +86,5 @@ class NStepSCAN:
                 self.current_queue += 1
             else:
                 self.override = True
+                print("total travel N-Step: ", self.sum_travel)
                 return

@@ -65,6 +65,73 @@ def main():
     disk = FSCAN()
     timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "FSCAN Fixed Array")
 
+    # NStep seek for table
+    disk = NStepSCAN()
+    timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "N-Step Fixed Array")
+
+    # Time averages
+    sum_time = 0
+    run_amount = 15
+    print("START FIFO AVERAGE")
+    for x in range(run_amount):
+        disk = FIFO()
+        sum_time += timer(disk, 1000, "FIFO Run #")
+    print("Average for FIFO: ", sum_time/run_amount, " seconds\n")
+
+    # Time averages
+    sum_time = 0
+    run_amount = 15
+    print("START LIFO AVERAGE")
+    for x in range(run_amount):
+        disk = LIFO()
+        sum_time += timer(disk, 1000, "LIFO Run #")
+    print("Average for LIFO: ", sum_time/run_amount, " seconds\n")
+
+    # Time averages
+    sum_time = 0
+    run_amount = 15
+    print("START SSTF AVERAGE")
+    for x in range(run_amount):
+        disk = SSTF()
+        sum_time += timer(disk, 1000, "SSTF Run #")
+    print("Average for SSTF: ", sum_time/run_amount, " seconds\n")
+
+    # Time averages
+    sum_time = 0
+    run_amount = 15
+    print("START SCAN AVERAGE")
+    for x in range(run_amount):
+        disk = SCAN()
+        sum_time += timer(disk, 1000, "SCAN Run #")
+    print("Average for SCAN: ", sum_time/run_amount, " seconds\n")
+
+    # Time averages
+    sum_time = 0
+    run_amount = 15
+    print("START CSCAN AVERAGE")
+    for x in range(run_amount):
+        disk = CSCAN()
+        sum_time += timer(disk, 1000, "CSCAN Run #")
+    print("Average for CSCAN: ", sum_time/run_amount, " seconds\n")
+
+    # Time averages
+    sum_time = 0
+    run_amount = 15
+    print("START FSCAN AVERAGE")
+    for x in range(run_amount):
+        disk = FSCAN()
+        sum_time += timer(disk, 1000, "FSCAN Run #")
+    print("Average for FSCAN: ", sum_time/run_amount, " seconds\n")
+
+    # Time averages
+    sum_time = 0
+    run_amount = 15
+    print("START N-Step AVERAGE")
+    for x in range(run_amount):
+        disk = NStepSCAN()
+        sum_time += timer(disk, 1000, "N-Step Run #")
+    print("Average for N-Step: ", sum_time/run_amount, " seconds\n")
+
     # FIFO Small, Fast and Weighted
     disk = FIFO(
         speed=4,
