@@ -3,7 +3,7 @@ class NStepSCAN:
         self.disk = [0] * size
         self.queue = queue
         self.queue_array = [self.queue] * 10
-        self.queue_size = 100
+        self.queue_size = 1000
         self.current_queue = 0
         self.override = False
         self.speed = speed
@@ -19,7 +19,7 @@ class NStepSCAN:
     def append(self, item):
         if 0 <= item < len(self.disk):
             for i in range(10):
-                if len(self.queue_array[i]) < 100:
+                if len(self.queue_array[i]) < self.queue_size:
                     self.queue_array[i].append(item)
                     self.queue_array[i] = sorted(self.queue_array[i])
         else:
@@ -33,10 +33,9 @@ class NStepSCAN:
     def start(self):
         direction = -1  # -1 is go negative down queue, 1 is up queue
         # If not stopped
-        while self.current_queue < 9:
-
+        while not self.override:
             # If there are items in the queue, spin the head to add it
-            if len(self.queue_array[self.current_queue]) > 0 and not self.override:
+            if len(self.queue_array[self.current_queue]) > 0:
 
                 # If current head is in the queue, remove it from the queue
                 if self.head in self.queue_array[self.current_queue]:
@@ -75,16 +74,19 @@ class NStepSCAN:
                                 self.head -= min(self.speed, distance)
                                 self.sum_travel += min(self.speed, distance)
                                 #print("move head to ", self.head)
-            elif len(self.queue_array[self.current_queue]) <= 0:
-                self.stop()
+            if len(self.queue_array[self.current_queue]) <= 0:
+                self.current_queue += 1
+                if self.current_queue > 9:
+                    self.current_queue = 0
         return
 
     # Stops the disk from running when the queue empties
     def stop(self):
         while True:
-            if len(self.queue_array[self.current_queue]) <= 0 and self.current_queue < 9:
-                self.current_queue += 1
-            else:
-                self.override = True
-                print("total travel N-Step: ", self.sum_travel)
-                return
+            for queue in self.queue_array:
+                if len(queue) > 0:
+                    break
+                else:
+                    self.override = True
+                    print("total travel N-Step: ", self.sum_travel)
+                    return
