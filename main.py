@@ -41,6 +41,73 @@ def main():
     disk = NStepSCAN()
     timer(disk, 1000, "N-Step Scan Basic")
 
+    print("\nHead at 199 for following: \n")
+    ##HEAD AT 199
+
+    # First in first out
+    disk = FIFO(head=199)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "FIFO head=199")
+
+    # Last in first out
+    disk = LIFO(head=199)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "LIFO head=199")
+
+    # SSTF
+    disk = SSTF(head=199)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "Shortest-Service-Time-First head=199")
+
+    # SCAN
+    disk = SCAN(head=199)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "SCAN head=199")
+
+    # C-SCAN
+    disk = CSCAN(head=199)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "C-SCAN head=199")
+
+    # FSCAN
+    disk = FSCAN(head=199)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "F-SCAN head=199")
+
+    # NStep
+    disk = NStepSCAN(head=199)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "N-Step Scan head=199")
+
+
+
+    print("\nHead at 0 for following: \n")
+    ##HEAD AT 0
+
+    # First in first out
+    disk = FIFO(head=0)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "FIFO head=0")
+
+    # Last in first out
+    disk = LIFO(head=0)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "LIFO head=0")
+
+    # SSTF
+    disk = SSTF(head=0)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "Shortest-Service-Time-First head=0")
+
+    # SCAN
+    disk = SCAN(head=0)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "SCAN head=0")
+
+    # C-SCAN
+    disk = CSCAN(head=0)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "C-SCAN head=0")
+
+    # FSCAN
+    disk = FSCAN(head=0)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "F-SCAN head=0")
+
+    # NStep
+    disk = NStepSCAN(head=0)
+    timer_fixed_array(disk, [55, 58, 39, 18, 90, 160, 150, 38, 184], "N-Step Scan head=0")
+
+
+
+
     # FIFO seek for table
     disk = FIFO()
     timer_fixed_array(disk, [55,58,39,18,90,160,150,38,184], "FIFO Fixed Array")
