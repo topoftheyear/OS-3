@@ -212,6 +212,84 @@ def main():
         weight=-10
     )
 
+    # LIFO Small, Fast and Weighted
+    disk = LIFO(
+        speed=4,
+        size=100,
+    )
+    timer(
+        disk,
+        1000,
+        "LIFO Weighted",
+        weighted=True,
+        weight=-10
+    )
+
+    # SSTF Small, Fast and Weighted
+    disk = SSTF(
+        speed=4,
+        size=100,
+    )
+    timer(
+        disk,
+        1000,
+        "STTF Weighted",
+        weighted=True,
+        weight=-10
+    )
+
+    # SCAN Small, Fast and Weighted
+    disk = SCAN(
+        speed=4,
+        size=100,
+    )
+    timer(
+        disk,
+        1000,
+        "SCAN Weighted",
+        weighted=True,
+        weight=-10
+    )
+
+    # CSCAN Small, Fast and Weighted
+    disk = CSCAN(
+        speed=4,
+        size=100,
+    )
+    timer(
+        disk,
+        1000,
+        "CSCAN Weighted",
+        weighted=True,
+        weight=-10
+    )
+
+    # FSCAN Small, Fast and Weighted
+    disk = FSCAN(
+        speed=4,
+        size=100,
+    )
+    timer(
+        disk,
+        1000,
+        "FSCAN Weighted",
+        weighted=True,
+        weight=-10
+    )
+
+    # NStep Small, Fast and Weighted
+    disk = NStepSCAN(
+        speed=4,
+        size=100,
+    )
+    timer(
+        disk,
+        1000,
+        "NStep Weighted",
+        weighted=True,
+        weight=-10
+    )
+
 
 # Weighted is a boolean that will determine if the numbers added will be weighted or not
 # Weight is a number that will determine how steep the linear weight will be, higher is smoother
