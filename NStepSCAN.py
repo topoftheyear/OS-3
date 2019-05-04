@@ -73,9 +73,7 @@ class NStepSCAN:
                                 self.head -= min(self.speed, distance)
                                 #print("move head to ", self.head)
             elif len(self.queue_array[self.current_queue]) <= 0:
-                if self.current_queue == 9:
-                    self.override = True
-                    return
+                self.stop()
         return
 
     # Stops the disk from running when the queue empties
