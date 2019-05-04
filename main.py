@@ -265,17 +265,17 @@ def main():
     )
 
     # FSCAN Small, Fast and Weighted
-    disk = FSCAN(
-        speed=4,
-        size=100,
-    )
-    timer(
-        disk,
-        1000,
-        "FSCAN Weighted",
-        weighted=True,
-        weight=-10
-    )
+#    disk = FSCAN(
+#        speed=4,
+#        size=100,
+#    )
+#    timer(
+#        disk,
+#        1000,
+#        "FSCAN Weighted",
+#        weighted=True,
+#        weight=-10
+#    )
 
     # NStep Small, Fast and Weighted
     disk = NStepSCAN(

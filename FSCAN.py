@@ -113,8 +113,7 @@ class FSCAN:
                 if self.head < 0:
                     self.head = len(self.disk)
             else:
-                self.override = True
-                return
+                break
         return
 
     # Stops the disk from running when the queue empties
