@@ -10,6 +10,7 @@ from CSCAN import CSCAN
 from SCAN import SCAN
 from SSTF import SSTF
 from FSCAN import FSCAN
+from NStepSCAN import NStepSCAN
 
 def main():
     # First in first out
@@ -35,6 +36,10 @@ def main():
     # FSCAN
     disk = FSCAN()
     timer(disk, 1000, "F-SCAN Basic")
+
+    # NStep
+    disk = NStepSCAN()
+    timer(disk, 1000, "N-Step Scan Basic")
 
     # FIFO seek for table
     disk = FIFO()
